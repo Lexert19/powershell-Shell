@@ -1,1 +1,0 @@
-cp socket.bat /var/www/html/socket.bat
