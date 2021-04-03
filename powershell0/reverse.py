@@ -1,5 +1,5 @@
 
-socket = open("socket0.ps1", "r")
+socket = open("socket.ps1", "r")
 string = ""
 
 while 1: 

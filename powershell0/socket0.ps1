@@ -17,6 +17,8 @@ while(1){
     while ($tcpConnection.Connected) {
         while ($tcpStream.DataAvailable -or $reader.Peek() -ne -1 ) {   
             write-host $reader.ReadLine();
+             <#$path = -join('C:\Program Files\Windows system\input', $inputCounter,'.txt');
+            Set-Content -Path $path -Value $reader.ReadLine();#>
             $inputCounter+=1;
         }
 
@@ -30,7 +32,7 @@ while(1){
             };
             $outputCounter+=1;
             Remove-Item $pathOutput;
-        }
+        };
     
         start-sleep -Milliseconds 120;
         $testConnection+=1;
