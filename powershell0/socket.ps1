@@ -38,7 +38,7 @@ while(1){
       
         
     
-        start-sleep -Milliseconds 120;
+        start-sleep -Milliseconds 300;
         $testConnection+=1;
         if($testConnection -ge 48){
             $writer.WriteLine('');
